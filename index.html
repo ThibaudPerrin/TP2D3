@@ -24,7 +24,7 @@
             stroke-width: 6;
         }
         rect {
-            fill: none;
+            fill: coral;
             stroke: coral;
             stroke-width: 1px;
         }
@@ -36,6 +36,7 @@
 <script type="text/javascript">
     //data
     var prenoms = ["Etudiant1","Etudiant2","Etudiant3"],
+        colors = ["blue","red","yellow"],
         nbEtudiants = prenoms.length,
         items = [
             {"id": 0, "jour": "lundi", "start": 0, "end": 70},
@@ -55,14 +56,19 @@
             {"id": 2, "jour": "vendredi", "start": 920, "end": 1200}
         ]
     timeBegin = 0,
-        timeEnd = 1200; //5 jours * 24h * 10
+    timeEnd = 1200; //5 jours * 24h * 10
 </script>
+
+
+
 <script type="text/javascript">
     w = 960,
     h = 100,
     height = nbEtudiants * 12 + 50;
 
     // TODO scales
+    var x = d3.scaleLinear().range([0, 500]).domain([0, 5]);
+    var y = d3.scaleLinear().range([0, 100]).domain([0, 3]);
 
     // chart
     var chart = d3.select("body")
@@ -70,6 +76,24 @@
         .attr("width", w)
         .attr("height", h)
         .attr("class", "chart");
+
+    var g = chart.append("g").attr("transform", "translate(100, 0)");
+
+    g.selectAll("text").data(prenoms).enter().append("text")
+        .text(function(d) { return d; })
+        .attr("x", 200)
+        .attr("y", function(d, i) { return  10 + (10 * i); })
+        .style("font-size", 12)
+        .style("text-anchor", "middle")
+        .style("font-family", "monospace");
+
+    g.selectAll("rect").data(items).enter().append("rect")
+        .attr("x", function(d, i) { return d.start + 250; })
+        .attr("y", function(d, i) { return  10 + (10 * d.id); })
+        .attr("height", 5)
+        .attr("width", function(d, i) { return  (d.end - (d.start)); })
+        .attr('fill', 'red');
+
 
     // TODO draw 1 lane per student
 
@@ -80,5 +104,36 @@
     // TODO color change on hovering rectangles
 
 </script>
+
+
+<!--
+<script>
+
+    var svg = d3.select("body").append("svg")
+        .attr("width", 960)
+        .attr("height", 500);
+
+    var data = [22, 32, 21, 23, 10, 22, 11, 19, 30, 50];
+
+    var x = d3.scaleLinear().range([0, 500]).domain([0, data.length]);
+    var y = d3.scaleLinear().range([0, 100]).domain([0, d3.max(data)]);
+
+    var g = svg.append("g").attr("transform", "translate(100, 0)");
+
+    g.selectAll("text").data(data).enter().append("text")
+        .text(function(d) { return d; })
+        .attr("y", 200)
+        .attr("x", function(d, i) { return x(i) + 20; })
+        .style("font-size", 12)
+        .style("text-anchor", "middle")
+        .style("font-family", "monospace");
+
+    g.selectAll("rect").data(data).enter().append("rect")
+        .attr("x", function(d, i) { return x(i); })
+        .attr("y", function(d) { return 170 - y(d); })
+        .attr("height", function(d) { return y(d); })
+        .attr("width", 500 / data.length - 10 );
+
+</script>-->
 </body>
 </html>
