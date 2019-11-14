@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style type="text/css">
+        .mini text {
+            font: 9px sans-serif;
+        }
+
+        .color0 {
+            fill: darksalmon;
+            stroke-width: 6;
+        }
+
+        .color1 {
+            fill: darkgreen;
+            fill-opacity: .7;
+            stroke-width: 6;
+        }
+
+        .color2 {
+            fill: slategray;
+            fill-opacity: .7;
+            stroke-width: 6;
+        }
+        rect {
+            fill: none;
+            stroke: coral;
+            stroke-width: 1px;
+        }
+
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+    //data
+    var prenoms = ["Etudiant1","Etudiant2","Etudiant3"],
+        nbEtudiants = prenoms.length,
+        items = [
+            {"id": 0, "jour": "lundi", "start": 0, "end": 70},
+            {"id": 0, "jour": "mardi", "start": 230, "end": 350},
+            {"id": 0, "jour": "mercredi", "start": 485, "end": 600},
+            {"id": 0, "jour": "jeudi", "start": 670, "end": 800},
+            {"id": 0, "jour": "vendredi", "start": 880, "end": 1000},
+            {"id": 1, "jour": "lundi", "start": 0, "end": 120},
+            {"id": 1, "jour": "mardi", "start": 250, "end": 400},
+            {"id": 1, "jour": "mercredi", "start": 500, "end": 600},
+            {"id": 1, "jour": "jeudi", "start": 700, "end": 850},
+            {"id": 1, "jour": "vendredi", "start": 1000, "end": 1110},
+            {"id": 2, "jour": "lundi", "start": 0, "end": 60},
+            {"id": 2, "jour": "mardi", "start": 230, "end": 400},
+            {"id": 2, "jour": "mercredi", "start": 440, "end": 600},
+            {"id": 2, "jour": "jeudi", "start": 690, "end": 800},
+            {"id": 2, "jour": "vendredi", "start": 920, "end": 1200}
+        ]
+    timeBegin = 0,
+        timeEnd = 1200; //5 jours * 24h * 10
+</script>
+<script type="text/javascript">
+    w = 960,
+    h = 100,
+    height = nbEtudiants * 12 + 50;
+
+    // TODO scales
+
+    // chart
+    var chart = d3.select("body")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h)
+        .attr("class", "chart");
+
+    // TODO draw 1 lane per student
+
+    // TODO draw 1 line per day
+
+    // TODO draw rectangles per item
+
+    // TODO color change on hovering rectangles
+
+</script>
+</body>
+</html>
