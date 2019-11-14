@@ -24,9 +24,6 @@
             stroke-width: 6;
         }
         rect {
-            fill: coral;
-            stroke: coral;
-            stroke-width: 1px;
         }
 
     </style>
@@ -92,7 +89,7 @@
         .attr("y", function(d, i) { return  10 + (10 * d.id); })
         .attr("height", 5)
         .attr("width", function(d, i) { return  (d.end - (d.start)); })
-        .attr('fill', 'red');
+        .attr('fill', function(d, i) { return  colors[d.id]});
 
 
     // TODO draw 1 lane per student
